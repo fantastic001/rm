@@ -16,7 +16,15 @@
 \usepackage{float}
 \usepackage{fancyvrb}
 \usepackage{fancyhdr}
+\usepackage{multicol}
 
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
 
 
 \begin{document}
@@ -29,89 +37,92 @@ Prirodno-matematički fakultet \\
 Univerzitet u Novom Sadu. \\
 }
 
+\maketitle
 \begin{abstract}
     Ovaj dokument sadr\i kritiku na rad koji ispituje metode procene sklonosti na greške tokom razvoja softvera upotrebom modela mašinskog učenja i primenom istih na promene u izvornom kodu. 
 \end{abstract}
 
 
-\maketitle
+\begin{multicols}{2}
 
-\section{Uvod i opis problema}
-\label{sec:introduction}
-
-Tokom razvoja softvera, veoma često dolazi do uvođenja grešaka u sam rad tog istog softvera. Grepka je bilo kakva devijacija u odnosu na zahtevanu specifikaciju. Tokom vremena, praksa razvoja softvera je utvrdila procedure koje značajno mogu sprečiti uvođenje grešaka u sam softver \cite{kozlov2013fault}. 
-
-\textit{Code Review} je procedura koja ima za cilj da preventira unošenje grešaka u softver prilikom svake promene na izvornom kodu. Ova praksa se ogleda u tome da više inženjera pogleda i odobri svaku promenu izvornog koda pre nego što ona postane deo glavne grane razvoja. Pokazano je da ovakva praksa značajno može unaprediti kvalitet softvera \cite{kozlov2013fault},
-
-Mana date metode jeste što ona zahteva vreme inženjera i dosta resursa (pre svega finansijskih). Zbog ovog ograničenja, dosta je istraživanja rađeno na automatskoj proceni sklonosti određenih delova koda na greške \cite{altiero2023ai,fenton1999critique,gondra2008applying,ouellet2023combining}. 
-
-Ovaj rad se bavi analizom i kritikom metoda pomenutih u \cite{altiero2023ai}. U sekciji \ref{sec:input_data} se opisuje sam oblik i procesiranje ulaznih podataka. U sekciji \ref{sec:methods} se opisuju i analiziraju metode korišćene u \cite{altiero2023ai}. Unapređenja za pomenuti rad se detaljnije diskutuju u sekciji \ref{sec:improvements}. Zaključak ovog rada je dat u sekciji \ref{sec:conclusion}.
-
-
-
-\section{Ulazni podaci}
-\label{sec:input_data}
-
-Ulazni podaci su promene u izvornom kodu koje se mogu dobiti kroz sistem za kontrolu verzija. U konkretnom slučaju su promene dobijene iz softverskih paketa otvorenog koda i upotrebom sistema za kontrolu verzija git \cite{spinellis2012git}. 
-
-Promene nad kojima su metode evaluirane su promene softverskih paketa napisanih u programskom jeziku Java i one uključuju promene u metodama klasa. 
-
-\section{Metode}
-\label{sec:methods}
-
-Prilikom procene sklonosti na greške za datu promenu, procenjuje se koliko je data promena velika odnosno koliko se prethodna verzija datog dela koda razlikuje od nove verzije. U \cite{altiero2023ai} su analizirane metode koje se baziraju na merenju razlike stabala \cite{moschitti2006making} i metode koje se baziraju na transformaciji datog koda u euklidski vektorski prostor \cite{feng2020codebert}. 
-
-Kvalitet datih metoda je meren tako što se njihova procena poredila sa procenom koju je dao profesionalni softverski inženjer. U radu autori su postavljali dva pitanja:
-
-\begin{itemize}
-  \item Koliko je profesionalni softverski inženjer objektivan?
-  \item Kolika je korelacija procena sklonosti na greške datih metoda i procene profesionalnog softverskog inženjera?
-\end{itemize}
-
-
-Na prvo pitanje, autori su sproveli dodatno istraživanje gde je jedan od autora, paralelno sa profesionalnim softverskim inženjerom procenjivao sklonost na greške nad datim promenama koda. Nakon ovog procesa, izračunata je korelacija između procena autora i profesionalnog softverskog inženjera koja je iznosila 0.85. Iz datih rezultata autori zaključuju da je profesionalni softverski inženjer objektivno jprocenjivao sklonost ka greškama. 
-
-Na drugo pitanje autori su pokušali da daju odgovor tako što su računali korelaciju između procena profesionalnog softverskog inženjera i analiziranih metoda. Četiri metode su bile analizirane i njihove korelacije sa ocenama profesionalnog softverskog inženjera su date u tabeli \ref{fig:table1}.
-
-\begin{table}
-  \begin{tabular}{l|r|r}
-    Metoda & Koeficijent koeralcije & p-vrednost \\
-    \hline
-    STK        & 0.6 &0.0000624 \\
-    CodeBERT   & 0.52&0.0000169 \\
-    PTK        & 0.40    & 0.00000518         \\
-    SSTK   &   0.31  & 0.000443         \\
-    \hline
-  \end{tabular}
-  \label{fig:table1}
-  \caption{Koeficijenti korelacije}
-\end{table}
-
-
-
-\section{Unapređenja}
-\label{sec:improvements}
-
-Autori rada su u zaključku predložili nekoliko unapređenja. Jedan smer u kom može ići dalje istraživanje jeste implementacija datih metoda u realnim softverskim projektima. Pored toga, predlaže se da se metode mogu uporediti sa stvarnim brojem detektovanih grešaka koje su prijavljene naknadno, a koje su prouzrokovane datim promenama. 
-
-Dodatni predlozi za unapređenje bi bili i ispitivanje drugih metoda, kao što su \cite{guo2020graphcodebert,ligraphplbart,hoang2020cc2vec}. Ove metode su se pokazale kao performantnije u primenama sumarizacije koda i detekcije duplikata u kodu. 
-
-Takođe, autori su ispitivali samo promene nad Java kodom i promene koje se dešavaju unutar metoda klasa. Ovde nedostaje šira pokrivenost jer često i same promene u strukturi koda mogu dovesti do grešaka kao i različit tretman nekih promena u zavisnosti od programskog jezika i njegove ekspresivnosti \cite{torley2008expressiveness}. 
-
-Dodatno, u radu nedostaje detaljnija analiza datih metoda na nekim veštačkim primerima kako bi se bolje razumelo ponašanje datih metoda. Takođe, rad navodi da je procenat promenjenih linija koda pozitivno koreliran sa ocenama koje su date od strane profesionalnog softverskog inženjera. Ovakvi rezultati mogu potencijalno značiti da su i same metode izuzetno naklonjene tome da visoko ocenjuju veće promene iako one mogu biti estetske prirode kao što je dodavanje komentara ili promena varijabli. Zbog navedenog, potrebno je ispitati prosečnu ocenu u zavisnosti od kategorije promene, gde bi se promene kategorizovale po semantičkom značenju. 
-
-
-\section{Zaključak}
-\label{sec:conclusion}
-
-Analizirani rad pruža pregled metoda koje mogu biti korišćene kako bi polu-automatizovale procenu uticaja određenih promena na sklonost greškama u softveru. Sam rad ne analizira stvarni uticaj analizom prijavljenih grešaka nego zapravo računa korelaciju između procene od strane modela i procene od strane čoveka. 
-
-Sam rad je moguće unaprediti uvođenjem implementacije u produkciji kao i proširivanjem analize na više metoda, analiza na više različitih programskih jezika kao i analiza svih mogućih promena koje se mogu desiti tokom razvoja softvera. 
-
-
-
-\bibliographystyle{unsrt}
-\bibliography{./refs.bib}
+  \section{Uvod i opis problema}
+  \label{sec:introduction}
+  
+  Tokom razvoja softvera, veoma često dolazi do uvođenja grešaka u sam rad tog istog softvera. Grepka je bilo kakva devijacija u odnosu na zahtevanu specifikaciju. Tokom vremena, praksa razvoja softvera je utvrdila procedure koje značajno mogu sprečiti uvođenje grešaka u sam softver \cite{kozlov2013fault}. 
+  
+  \textit{Code Review} je procedura koja ima za cilj da preventira unošenje grešaka u softver prilikom svake promene na izvornom kodu. Ova praksa se ogleda u tome da više inženjera pogleda i odobri svaku promenu izvornog koda pre nego što ona postane deo glavne grane razvoja. Pokazano je da ovakva praksa značajno može unaprediti kvalitet softvera \cite{kozlov2013fault},
+  
+  Mana date metode jeste što ona zahteva vreme inženjera i dosta resursa (pre svega finansijskih). Zbog ovog ograničenja, dosta je istraživanja rađeno na automatskoj proceni sklonosti određenih delova koda na greške \cite{altiero2023ai,fenton1999critique,gondra2008applying,ouellet2023combining}. 
+  
+  Ovaj rad se bavi analizom i kritikom metoda pomenutih u \cite{altiero2023ai}. U sekciji \ref{sec:input_data} se opisuje sam oblik i procesiranje ulaznih podataka. U sekciji \ref{sec:methods} se opisuju i analiziraju metode korišćene u \cite{altiero2023ai}. Unapređenja za pomenuti rad se detaljnije diskutuju u sekciji \ref{sec:improvements}. Zaključak ovog rada je dat u sekciji \ref{sec:conclusion}.
+  
+  
+  
+  \section{Ulazni podaci}
+  \label{sec:input_data}
+  
+  Ulazni podaci su promene u izvornom kodu koje se mogu dobiti kroz sistem za kontrolu verzija. U konkretnom slučaju su promene dobijene iz softverskih paketa otvorenog koda i upotrebom sistema za kontrolu verzija git \cite{spinellis2012git}. 
+  
+  Promene nad kojima su metode evaluirane su promene softverskih paketa napisanih u programskom jeziku Java i one uključuju promene u metodama klasa. 
+  
+  \section{Metode}
+  \label{sec:methods}
+  
+  Prilikom procene sklonosti na greške za datu promenu, procenjuje se koliko je data promena velika odnosno koliko se prethodna verzija datog dela koda razlikuje od nove verzije. U \cite{altiero2023ai} su analizirane metode koje se baziraju na merenju razlike stabala \cite{moschitti2006making} i metode koje se baziraju na transformaciji datog koda u euklidski vektorski prostor \cite{feng2020codebert}. 
+  
+  Kvalitet datih metoda je meren tako što se njihova procena poredila sa procenom koju je dao profesionalni softverski inženjer. U radu autori su postavljali dva pitanja:
+  
+  \begin{itemize}
+    \item Koliko je profesionalni softverski inženjer objektivan?
+    \item Kolika je korelacija procena sklonosti na greške datih metoda i procene profesionalnog softverskog inženjera?
+  \end{itemize}
+  
+  
+  Na prvo pitanje, autori su sproveli dodatno istraživanje gde je jedan od autora, paralelno sa profesionalnim softverskim inženjerom procenjivao sklonost na greške nad datim promenama koda. Nakon ovog procesa, izračunata je korelacija između procena autora i profesionalnog softverskog inženjera koja je iznosila 0.85. Iz datih rezultata autori zaključuju da je profesionalni softverski inženjer objektivno jprocenjivao sklonost ka greškama. 
+  
+  Na drugo pitanje autori su pokušali da daju odgovor tako što su računali korelaciju između procena profesionalnog softverskog inženjera i analiziranih metoda. Četiri metode su bile analizirane i njihove korelacije sa ocenama profesionalnog softverskog inženjera su date u tabeli \ref{fig:table1}.
+  
+  \begin{table}
+    \begin{tabular}{l|r|r}
+      Metoda & Koeficijent koeralcije & p-vrednost \\
+      \hline
+      STK        & 0.6 &0.0000624 \\
+      CodeBERT   & 0.52&0.0000169 \\
+      PTK        & 0.40    & 0.00000518         \\
+      SSTK   &   0.31  & 0.000443         \\
+      \hline
+    \end{tabular}
+    \label{fig:table1}
+    \caption{Koeficijenti korelacije}
+  \end{table}
+  
+  
+  
+  \section{Unapređenja}
+  \label{sec:improvements}
+  
+  Autori rada su u zaključku predložili nekoliko unapređenja. Jedan smer u kom može ići dalje istraživanje jeste implementacija datih metoda u realnim softverskim projektima. Pored toga, predlaže se da se metode mogu uporediti sa stvarnim brojem detektovanih grešaka koje su prijavljene naknadno, a koje su prouzrokovane datim promenama. 
+  
+  Dodatni predlozi za unapređenje bi bili i ispitivanje drugih metoda, kao što su \cite{guo2020graphcodebert,ligraphplbart,hoang2020cc2vec}. Ove metode su se pokazale kao performantnije u primenama sumarizacije koda i detekcije duplikata u kodu. 
+  
+  Takođe, autori su ispitivali samo promene nad Java kodom i promene koje se dešavaju unutar metoda klasa. Ovde nedostaje šira pokrivenost jer često i same promene u strukturi koda mogu dovesti do grešaka kao i različit tretman nekih promena u zavisnosti od programskog jezika i njegove ekspresivnosti \cite{torley2008expressiveness}. 
+  
+  Dodatno, u radu nedostaje detaljnija analiza datih metoda na nekim veštačkim primerima kako bi se bolje razumelo ponašanje datih metoda. Takođe, rad navodi da je procenat promenjenih linija koda pozitivno koreliran sa ocenama koje su date od strane profesionalnog softverskog inženjera. Ovakvi rezultati mogu potencijalno značiti da su i same metode izuzetno naklonjene tome da visoko ocenjuju veće promene iako one mogu biti estetske prirode kao što je dodavanje komentara ili promena varijabli. Zbog navedenog, potrebno je ispitati prosečnu ocenu u zavisnosti od kategorije promene, gde bi se promene kategorizovale po semantičkom značenju. 
+  
+  
+  \section{Zaključak}
+  \label{sec:conclusion}
+  
+  Analizirani rad pruža pregled metoda koje mogu biti korišćene kako bi polu-automatizovale procenu uticaja određenih promena na sklonost greškama u softveru. Sam rad ne analizira stvarni uticaj analizom prijavljenih grešaka nego zapravo računa korelaciju između procene od strane modela i procene od strane čoveka. 
+  
+  Sam rad je moguće unaprediti uvođenjem implementacije u produkciji kao i proširivanjem analize na više metoda, analiza na više različitih programskih jezika kao i analiza svih mogućih promena koje se mogu desiti tokom razvoja softvera. 
+  
+  
+  
+  \bibliographystyle{unsrt}
+  \bibliography{./refs.bib}
+  
+\end{multicols}
 
 
 \end{document}
