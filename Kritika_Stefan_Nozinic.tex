@@ -31,15 +31,12 @@
 
 \title{Kritika na rad: AI-Based Fault-Proneness Metrics for Source Code Changes}
 \author{Stefan Nožinić \\
-student II godine master studija računarskih nauka \\
-Departman za matematiku i informatiku \\
-Prirodno-matematički fakultet \\
-Univerzitet u Novom Sadu. \\
+Departman za matematiku i informatiku, Prirodno-matematički fakultet, Univerzitet u Novom Sadu. \\
 }
 
 \maketitle
 \begin{abstract}
-    Ovaj dokument sadr\i kritiku na rad koji ispituje metode procene sklonosti na greške tokom razvoja softvera upotrebom modela mašinskog učenja i primenom istih na promene u izvornom kodu. 
+    Ovaj dokument sadrži kritiku na rad koji ispituje metode procene sklonosti na greške tokom razvoja softvera upotrebom modela mašinskog učenja i primenom istih na promene u izvornom kodu. 
 \end{abstract}
 
 
@@ -82,19 +79,22 @@ Univerzitet u Novom Sadu. \\
   
   Na drugo pitanje autori su pokušali da daju odgovor tako što su računali korelaciju između procena profesionalnog softverskog inženjera i analiziranih metoda. Četiri metode su bile analizirane i njihove korelacije sa ocenama profesionalnog softverskog inženjera su date u tabeli \ref{fig:table1}.
   
-  \begin{table}
-    \begin{tabular}{l|r|r}
-      Metoda & Koeficijent koeralcije & p-vrednost \\
-      \hline
-      STK        & 0.6 &0.0000624 \\
-      CodeBERT   & 0.52&0.0000169 \\
-      PTK        & 0.40    & 0.00000518         \\
-      SSTK   &   0.31  & 0.000443         \\
-      \hline
-    \end{tabular}
-    \label{fig:table1}
+  \begin{table*}
+    \begin{center}
+      
+      \begin{tabular}{l|r|r}
+        Metoda & Koeficijent koeralcije & p-vrednost \\
+        \hline
+        STK        & 0.6 &0.0000624 \\
+        CodeBERT   & 0.52&0.0000169 \\
+        PTK        & 0.40    & 0.00000518         \\
+        SSTK   &   0.31  & 0.000443         \\
+        \hline
+      \end{tabular}
+    \end{center}
     \caption{Koeficijenti korelacije}
-  \end{table}
+    \label{fig:table1}
+  \end{table*}
   
   
   
