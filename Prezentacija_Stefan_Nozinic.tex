@@ -5,6 +5,9 @@
 \usepackage[T1]{fontenc}
 \usepackage[serbian]{babel}
 
+% do not include footer 
+\setbeamertemplate{footline}{}
+
 \title[Kritika: AI-Based Fault-Proneness Metrics]{Kritika na rad: AI-Based Fault-Proneness Metrics for Source Code}
 \institute{Univerzitet u Novom Sadu}
 \author{Stefan Nožinić}
@@ -31,7 +34,11 @@
 \begin{itemize}
     \item Detalji o ulaznim podacima rada.
     \item Izvor podataka i njihova obrada.
-    \item Kritički osvrt na kvalitet i relevantnost podataka.
+    \begin{itemize}
+        \item Open source projekti 
+        \item Java programski jezik
+        \item Promene nad metodama
+    \end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -39,9 +46,8 @@
 \frametitle{Metode}
 \begin{itemize}
     \item Opis metodologije rada.
-    \item Analiza metrika zasnovanih na stablima i vektorskom prostoru.
-    \item Kritika primenjenih metoda i njihova efikasnost.
-    \item Prednosti i mane navedenih metoda.
+    \item Analiza metrika zasnovanih na stablima 
+    \item Analiza metrika zasnovanih na transformacijama u vektor
 \end{itemize}
 \end{frame}
 
@@ -67,9 +73,25 @@
 \begin{frame}
 \frametitle{Unapređenja}
 \begin{itemize}
-    \item Predlozi za poboljšanja u budućim istraživanjima.
     \item Ideje za implementaciju metoda u stvarnim projektima.
     \item Smerovi za proširenje istraživanja.
+    \begin{itemize}
+        \item Različiti programski jezici
+        \item Evaluacija na specifičnoj kategoriji promena
+        \begin{itemize}
+            \item Po tipu promene
+            \item Po broju linija koda
+            \item Po broju metoda
+            \item Po broju klasa
+            \item Po broju fajlova
+        \end{itemize}
+        \item Različiti tipovi promena
+        \begin{itemize}
+            \item Dodavanje novih metoda
+            \item Brisanje metoda
+        \end{itemize}
+        \item Upotreba drugih metoda kao npr GraphCodeBERT i sl.
+    \end{itemize}
 \end{itemize}
 \end{frame}
 
