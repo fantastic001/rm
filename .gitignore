@@ -1,0 +1,40 @@
+# ignore pdfs
+**.pdf
+
+# ignore all latex build files
+**.aux
+**.bbl
+**.blg
+**.log
+**.out
+**.toc
+**.fdb_latexmk
+**.synctex.gz
+**.fls
+**.dvi
+**.xdv
+**.lof
+**.lot
+**.fmt
+**.fot
+**.cb
+**.cb2
+**.upa
+**.upb
+**.nav
+**.snm
+
+# ignore all excel files
+**.xls
+**.xlsx
+
+# ignore python cache
+**__pycache__/
+
+
+# ignore all images
+**.png
+
+# ignore all zip files
+**.zip
+
