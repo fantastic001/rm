@@ -4,6 +4,8 @@
 \usepackage{graphicx}
 \usepackage{subfig}
 \usepackage[serbian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fontenc}
 \usepackage{pgffor}
 \begin{document}
 \title{Izveštaj}
@@ -26,15 +28,16 @@ gde je $d_{i}$ rastojanje između rangova dve slučajne promenljive. Rangovi se 
 Razlog zašto je korišćen Spermansov koeficijent korelacije je taj što je on nezavisan od raspodele slučajnih promenljivih. 
 U ovom slučaju raspodela promenljivih nije bila normalna, pa je korišćen Spermansov koeficijent korelacije.
 
-Na narednim slikama su prikazane raspodele slučajnih promenljivih.
+Na slikama \ref{fig:Bioskop}-\ref{fig:Pozorište} su prikazane raspodele slučajnih promenljivih.
 
 
 % loop over variables
-\foreach \x in {Cine, Fine Arts, Halls, Heritage, Literat, Music, Sport, Theater} {
+\foreach \x in {Bioskop, Umetnost, Sale za događaje, Nasleđe, Književnost, Muzika, Sport, Pozorište} {
 \begin{figure}[h!]
 \centering
 \includegraphics{figures/\x.png}
 \caption{Raspodela slučajne promenljive \x}
+\label{fig:\x}
 \end{figure}
 }
 
@@ -42,10 +45,10 @@ Na narednim slikama su prikazane raspodele slučajnih promenljivih.
 
 Na sledećim slikama su prikazani korelacioni koeficijenti za različite slučajne promenljive.
 
-\foreach \x in {1,2,3,None} {
+\foreach \x in {Altenejo,Centralni deo,Severni deo,svi} {
 \begin{figure}
 \centering
-\subfloat[Korelacije za region \x]{\includegraphics[width=0.5\textwidth]{figures/Correlogram_\x.png}}
+\subfloat[Korelacije za region \x]{\includegraphics{figures/Correlogram_\x.png}}
 \end{figure}
 }
 

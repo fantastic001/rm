@@ -5,6 +5,20 @@ import os
 # read excel file from argument 
 df = pd.read_excel(sys.argv[1], sheet_name='DATA')
 
+trnaslations = {
+    "Regions": "Region",
+    "Cine": "Bioskop",
+    "Fine Arts": "Umetnost",
+    "Sports": "Sport",
+    "Music": "Muzika",
+    "Theater": "Pozorište",
+    "Halls": "Sale za događaje",
+    "Heritage": "Nasleđe",
+    "Literat": "Književnost",
+}
+
+df = df.rename(columns=trnaslations)
+
 figures_dir = sys.argv[2]
 if not os.path.exists(figures_dir):
     os.makedirs(figures_dir)
@@ -68,6 +82,13 @@ for correlation_method in ['pearson', 'kendall', 'spearman']:
             print(f"Index: {index}, Correlation: {correlation}")
 
 
+region_translations = {
+    1: "Altenejo",
+    2: "Centralni deo",
+    3: "Severni deo",
+    None: "Svi",
+}
+
 # draw correlogram
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -85,4 +106,4 @@ for region in list(df['Region'].unique()) + [None]:
     else:
         plt.title(f"Region: {region}")
     sns.heatmap(region_df.corr(method="spearman"), annot=True)
-    plt.savefig(os.path.join(figures_dir, f"correlogram_{region}.png"))
+    plt.savefig(os.path.join(figures_dir, "correlogram_%s.png" % region_translations[region]))
