@@ -1,0 +1,55 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage[serbian]{babel}
+\usepackage{pgffor}
+\begin{document}
+\title{Izveštaj}
+\author{Stefan Nožinić}
+\maketitle
+\section{Uvod}
+
+U ovom izveštaju je analiziran odnos između različitih slučajnih promenljivih. 
+
+\section{Metodologija}
+
+U ovom radu je korišćen Spermansov koeficijent korelacije za određivanje zavisnosti između dve slučajne promenljive. Spermansov koeficijent korelacije je definisan kao:
+
+\begin{equation}
+\rho = 1 - \frac{6\sum_{i=1}^{n}d_{i}^{2}}{n(n^{2}-1)}
+\end{equation}
+
+gde je $d_{i}$ rastojanje između rangova dve slučajne promenljive. Rangovi se određuju tako da se sortiraju vrednosti slučajnih promenljivih i dodeljuju im se rangovi od 1 do n. Ako se dve vrednosti poklapaju, dodeljuje im se aritmetička sredina njihovih rangova.
+
+Razlog zašto je korišćen Spermansov koeficijent korelacije je taj što je on nezavisan od raspodele slučajnih promenljivih. 
+U ovom slučaju raspodela promenljivih nije bila normalna, pa je korišćen Spermansov koeficijent korelacije.
+
+Na narednim slikama su prikazane raspodele slučajnih promenljivih.
+
+
+% loop over variables
+\foreach \x in {Cine, Fine Arts, Halls, Heritage, Literat, Music, Sport, Theater} {
+\begin{figure}[h!]
+\centering
+\includegraphics{figures/\x.png}
+\caption{Raspodela slučajne promenljive \x}
+\end{figure}
+}
+
+\section{Rezultati}
+
+Na sledećim slikama su prikazani korelacioni koeficijenti za različite slučajne promenljive.
+
+\foreach \x in {1,2,3,None} {
+\begin{figure}
+\centering
+\subfloat[Korelacije za region \x]{\includegraphics[width=0.5\textwidth]{figures/Correlogram_\x.png}}
+\end{figure}
+}
+
+\section{Zaključak}
+
+\end{document}
+\endinput
