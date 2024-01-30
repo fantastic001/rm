@@ -107,3 +107,13 @@ for region in list(df['Region'].unique()) + [None]:
         plt.title(f"Region: {region}")
     sns.heatmap(region_df.corr(method="spearman"), annot=True)
     plt.savefig(os.path.join(figures_dir, "correlogram_%s.png" % region_translations[region]))
+
+def draw_region_distribution():
+    sns.set_theme(style="whitegrid")
+    # translate region values 
+    df_region = df["Region"].replace(region_translations)
+    plt.figure()
+    sns.histplot(df_region)
+    plt.savefig(os.path.join(figures_dir, "region_distribution.png"))
+
+# draw_region_distribution()
