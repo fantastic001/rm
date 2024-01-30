@@ -13,22 +13,45 @@
 \maketitle
 \section{Uvod}
 
-U ovom izveštaju je analiziran odnos između različitih slučajnih promenljivih. 
+U ovom izveštaju je analiziran budžet za kulturu u različitim gradovima u Portugalu. 
+
+\section{Podaci}
+
+Podaci sadrže gradove gde svaki grad ima region kom pripada koji je jedan od:
+
+\begin{itemize}
+    \item Altenejo
+    \item Centralni deo 
+    \item Severni deo 
+\end{itemize}
+
+Pored regiona, podaci sadrže i procenat budžeta za kuluturu na različite kategorije odnosno:
+
+\begin{itemize}
+    \item Bioskop
+    \item Umetnost
+    \item Sale za događaje
+    \item Nasleđe
+    \item Književnost
+    \item Muzika
+    \item Sport
+    \item Pozorište
+\end{itemize}
 
 \section{Metodologija}
 
-U ovom radu je korišćen Spermansov koeficijent korelacije za određivanje zavisnosti između dve slučajne promenljive. Spermansov koeficijent korelacije je definisan kao:
+U ovom radu je korišćen Spermanov koeficijent korelacije za određivanje zavisnosti između dve slučajne promenljive. Spermanov koeficijent korelacije je definisan kao:
 
 \begin{equation}
 \rho = 1 - \frac{6\sum_{i=1}^{n}d_{i}^{2}}{n(n^{2}-1)}
 \end{equation}
 
+
 gde je $d_{i}$ rastojanje između rangova dve slučajne promenljive. Rangovi se određuju tako da se sortiraju vrednosti slučajnih promenljivih i dodeljuju im se rangovi od 1 do n. Ako se dve vrednosti poklapaju, dodeljuje im se aritmetička sredina njihovih rangova.
 
-Razlog zašto je korišćen Spermansov koeficijent korelacije je taj što je on nezavisan od raspodele slučajnih promenljivih. 
-U ovom slučaju raspodela promenljivih nije bila normalna, pa je korišćen Spermansov koeficijent korelacije.
+Razlog zašto je korišćen Spermanov koeficijent korelacije je taj što je on nezavisan od raspodele slučajnih promenljivih. 
+U ovom slučaju raspodela promenljivih nije bila normalna što se može i videti na slikama \ref{fig:Bioskop}-\ref{fig:Pozorište}.
 
-Na slikama \ref{fig:Bioskop}-\ref{fig:Pozorište} su prikazane raspodele slučajnih promenljivih.
 
 
 % loop over variables
@@ -36,23 +59,68 @@ Na slikama \ref{fig:Bioskop}-\ref{fig:Pozorište} su prikazane raspodele slučaj
 \begin{figure}[h!]
 \centering
 \includegraphics{figures/\x.png}
-\caption{Raspodela slučajne promenljive \x}
+\caption{Raspodela za kategoriju: \x}
 \label{fig:\x}
 \end{figure}
 }
 
 \section{Rezultati}
 
-Na sledećim slikama su prikazani korelacioni koeficijenti za različite slučajne promenljive.
+Na slikama \ref{fig:Correlogram_Altenejo}-\ref{fig:Correlogram_svi}  su prikazani korelacioni koeficijenti za različite regione.
 
 \foreach \x in {Altenejo,Centralni deo,Severni deo,svi} {
 \begin{figure}
 \centering
-\subfloat[Korelacije za region \x]{\includegraphics{figures/Correlogram_\x.png}}
+\includegraphics{figures/Correlogram_\x.png}
+\caption{Korelacije za region \x}
+\label{fig:Correlogram_\x}
 \end{figure}
 }
 
+\subsection{Korelacije za region Altenejo}
+
+
+Ono što se može zaključiti iz ovih slika je da postoji pozitivna korelacija između budžeta za pozorište i budžeta za umetnost koja iznosi 0.61. 
+
+Takođe, postoji negativna korelacija između budžeta za sale za događaje i budžeta za Književnost koja iznosi -0.51.
+
+Negativna korelacija je uočena i kod budžeta za Muziku i budžeta za sport koja iznosi -0.53.
+
+\subsection{Korelacije za region Centralni deo}
+
+Ono što se može zaključiti iz ovih slika je da postoji pozitivna korelacija između budžeta za pozorište i budžeta za bioskop koja iznosi 0.53.
+
+Takođe, postoji negativna korelacija između budžeta za sport i budžeta za muziku koja iznosi -0.56.
+
+\subsection{Korelacije za region Severni deo}
+
+U severnom delu zemlje nije uočena nikakva pozitivna ni negativna korelacija između budžeta za različite kategorije.
+
+\section{Diskusija}
+
+Na osnovu dobijenih rezultata može se zaključiti da postoji pozitivna korelacija između budžeta za pozorište i budžeta za umetnost. Ovo je očekivano, jer se u pozorištu izvode različite umetničke predstave a u regionu Altenejo se vidi kordinisana raspodela budžeta za ove dve kategorije. 
+
+Negativna korelacija između budžeta za muziku i budžeta za sport je takođe očekivana, jer gradovi svoje ograničene resurse pokušavaju da usmere skladno svojoj infrastrukturi. 
+
+Kada se pogledaju negativne korelacije, može se zaključiti da gradovi mahom svoje budžete fokusiraju na određene kategorije i da im se fokus razlikuje, bez obzira što su geografski blizu i nalaze se u istim regionima. 
+
+
 \section{Zaključak}
+
+U ovom izveštaju je analiziran budžet za kulturu u različitim gradovima u Portugalu.
+
+Korišćen je Spermansov koeficijent korelacije za određivanje zavisnosti između dve slučajne promenljive.
+
+Na osnovu dobijenih rezultata može se zaključiti da postoji pozitivna korelacija između budžeta za pozorište i budžeta za umetnost u regionu Altenejo.
+
+Zaključuje se da su kategorije koje su infrastrukturno kompatibilne često i kordinisane u dodeli budžeta. Kategorije kutlure koje su infrastrukturno inkompatibilne su često i negativno korelisane u dodeli budžeta kao na primer kategorije muzike i sporta.
+
+\section{Literatura}
+
+\begin{enumerate}
+    \item \textit{INE - Instituto Nacional de Estatística, Portugal}
+    \item \textit{https://en.wikipedia.org/wiki/Spearman\%27s\_rank\_correlation\_coefficient}
+\end{enumerate}
 
 \end{document}
 \endinput
