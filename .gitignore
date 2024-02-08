@@ -1,5 +1,3 @@
-# ignore pdfs
-**.pdf
 
 # ignore all latex build files
 **.aux
